@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf13xhmil7s5o"
-path="res://.godot/imported/stand3.png-b11ee1c81721cfd199d5b774996fbafb.ctex"
+uid="uid://dmks777vx0mhm"
+path="res://.godot/imported/red_room_dark.png-85a6466b6976dcf7ac0999a162fd5cc9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/stand3.png"
-dest_files=["res://.godot/imported/stand3.png-b11ee1c81721cfd199d5b774996fbafb.ctex"]
+source_file="res://Sprites/Rooms/red_room_dark.png"
+dest_files=["res://.godot/imported/red_room_dark.png-85a6466b6976dcf7ac0999a162fd5cc9.ctex"]
 
 [params]
 

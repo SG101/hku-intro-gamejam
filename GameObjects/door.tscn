@@ -1,6 +1,135 @@
-[gd_scene load_steps=2 format=3 uid="uid://b8qp1lqqkg6eq"]
+[gd_scene load_steps=22 format=3 uid="uid://b8qp1lqqkg6eq"]
 
 [ext_resource type="Script" path="res://GameObjects/door.gd" id="1_3ydki"]
+[ext_resource type="Texture2D" uid="uid://hiwjbpdibqjy" path="res://Sprites/door.png" id="2_es13c"]
+[ext_resource type="Script" path="res://clickable_body.gd" id="3_ia3yq"]
+[ext_resource type="Texture2D" uid="uid://bniue2wlexvwl" path="res://Sprites/Light/light2.png" id="3_iss2b"]
+[ext_resource type="Texture2D" uid="uid://0rfnrwq0o1k6" path="res://Sprites/Light/light6.png" id="4_j3jou"]
+[ext_resource type="Texture2D" uid="uid://b4fhlct5x28qt" path="res://Sprites/Light/light1.png" id="4_tkenm"]
+[ext_resource type="Texture2D" uid="uid://by4u7jwsljleo" path="res://Sprites/Light/light3.png" id="4_yke1p"]
+[ext_resource type="Texture2D" uid="uid://cdy14rhm48iv7" path="res://Sprites/Light/light4.png" id="5_cx5sd"]
+[ext_resource type="Texture2D" uid="uid://b76iglbxijuxo" path="res://Sprites/door_light.png" id="5_onrx8"]
+[ext_resource type="Texture2D" uid="uid://by8yovcxemum1" path="res://Sprites/Light/light5.png" id="6_px0p0"]
+[ext_resource type="Texture2D" uid="uid://dkhegrbrkyg2n" path="res://Sprites/Light/light7.png" id="8_otekp"]
+[ext_resource type="Texture2D" uid="uid://dju0siasbw5fa" path="res://Sprites/Light/light8.png" id="9_bxltn"]
+[ext_resource type="Texture2D" uid="uid://clseosijh4mil" path="res://Sprites/Light/light9.png" id="10_egcf4"]
+[ext_resource type="Texture2D" uid="uid://xrryquqcxs1v" path="res://Sprites/Light/light10.png" id="11_ivc1c"]
+[ext_resource type="Texture2D" uid="uid://k4fq8b6w2gtl" path="res://Sprites/Light/light11.png" id="12_g4d3x"]
+[ext_resource type="AudioStream" uid="uid://bx77o13yux7v7" path="res://Audio/Klik Lamp.wav" id="13_pw345"]
+
+[sub_resource type="Animation" id="Animation_56dpv"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("4_tkenm")]
+}
+
+[sub_resource type="Animation" id="Animation_ux1pr"]
+resource_name = "light_off"
+step = 0.02
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite3D2:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.02, 0.04, 0.06, 0.08, 0.1, 0.12, 0.14, 0.16, 0.18, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [ExtResource("4_tkenm"), ExtResource("3_iss2b"), ExtResource("4_yke1p"), ExtResource("5_cx5sd"), ExtResource("6_px0p0"), ExtResource("4_j3jou"), ExtResource("8_otekp"), ExtResource("9_bxltn"), ExtResource("10_egcf4"), ExtResource("11_ivc1c"), ExtResource("12_g4d3x")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"turn_light_on"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer3D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("13_pw345")
+}],
+"times": PackedFloat32Array(0.06)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_qeum4"]
+_data = {
+"RESET": SubResource("Animation_56dpv"),
+"light_off": SubResource("Animation_ux1pr")
+}
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_73uo6"]
+size = Vector3(1.22559, 2.66809, 0.258789)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g86og"]
+size = Vector3(0.241608, 0.36673, 0.258789)
 
 [node name="Door" type="Node3D"]
 script = ExtResource("1_3ydki")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_qeum4")
+}
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31045, 0)
+texture = ExtResource("2_es13c")
+
+[node name="ClickableBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.31045, 0)
+script = ExtResource("3_ia3yq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickableBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00201392, 0)
+shape = SubResource("BoxShape3D_73uo6")
+
+[node name="ClickableBody2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.871491, 1.65458, 0)
+script = ExtResource("3_ia3yq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickableBody2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0040741, 0.0310819, 0)
+shape = SubResource("BoxShape3D_g86og")
+
+[node name="Sprite3D2" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.774025, 1.6539, -0.0437937)
+pixel_size = 0.05
+texture_filter = 0
+texture = ExtResource("4_tkenm")
+
+[node name="Light" type="Sprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.275941, 0.1441)
+pixel_size = 0.004
+texture = ExtResource("5_onrx8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+
+[connection signal="clicked" from="ClickableBody" to="." method="_on_clickable_body_clicked"]
+[connection signal="clicked" from="ClickableBody2" to="." method="_on_clickable_body_2_clicked"]

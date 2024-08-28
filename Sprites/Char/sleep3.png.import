@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cupwcokvmpxpc"
-path="res://.godot/imported/sleep3.png-031f68a99242f32220efa61a67ac83f3.ctex"
+path="res://.godot/imported/sleep3.png-e7efc437baa294a49666e94565b448c2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/sleep3.png"
-dest_files=["res://.godot/imported/sleep3.png-031f68a99242f32220efa61a67ac83f3.ctex"]
+source_file="res://Sprites/Char/sleep3.png"
+dest_files=["res://.godot/imported/sleep3.png-e7efc437baa294a49666e94565b448c2.ctex"]
 
 [params]
 

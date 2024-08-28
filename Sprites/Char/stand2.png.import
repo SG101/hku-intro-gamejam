@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mbigyrpdafo1"
-path="res://.godot/imported/sit3.png-84fcfc655e85a38d523b039ec046dc59.ctex"
+uid="uid://dubbil3fva64s"
+path="res://.godot/imported/stand2.png-fbe6d491d7a6be911b0c645f65a45413.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/sit3.png"
-dest_files=["res://.godot/imported/sit3.png-84fcfc655e85a38d523b039ec046dc59.ctex"]
+source_file="res://Sprites/Char/stand2.png"
+dest_files=["res://.godot/imported/stand2.png-fbe6d491d7a6be911b0c645f65a45413.ctex"]
 
 [params]
 

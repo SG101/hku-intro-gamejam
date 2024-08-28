@@ -1,40 +1,20 @@
 [gd_scene load_steps=11 format=3 uid="uid://dwcsvdeusfabf"]
 
 [ext_resource type="Script" path="res://Scripts/room.gd" id="1_css44"]
+[ext_resource type="Texture2D" uid="uid://c77lx32nocf1w" path="res://Sprites/Rooms/green_room_dark.png" id="2_2wy5y"]
+[ext_resource type="Texture2D" uid="uid://bboy8acx3n7yu" path="res://Sprites/Char/stand1.png" id="2_q1js7"]
+[ext_resource type="Script" path="res://clickable_body.gd" id="4_3viyu"]
+[ext_resource type="Texture2D" uid="uid://bkxu3xnqtkw2" path="res://Sprites/back.png" id="5_ms18u"]
 
 [sub_resource type="Animation" id="Animation_0k504"]
 resource_name = "RESET"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Occupant:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(0, 1, 0)]
-}
+
+[sub_resource type="Animation" id="Animation_xg6ud"]
+resource_name = "lights"
 
 [sub_resource type="Animation" id="Animation_tyqlp"]
 resource_name = "sleep"
 length = 10.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Occupant:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.566667, 4.16667, 4.53333, 10),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(0, 1, 0), Vector3(-1.18678, 1.29911, 0), Vector3(-1.18678, 1.29911, 0), Vector3(-1.85254, 1.50173, 0), Vector3(-1.85254, 1.50173, 0)]
-}
-
-[sub_resource type="Animation" id="Animation_xg6ud"]
-resource_name = "lights"
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yblhn"]
 _data = {
@@ -43,20 +23,8 @@ _data = {
 "sleep": SubResource("Animation_tyqlp")
 }
 
-[sub_resource type="QuadMesh" id="QuadMesh_klywe"]
-size = Vector2(1, 2)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_t8jnh"]
-size = Vector2(1.2, 0.7)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fy7mk"]
-albedo_color = Color(0.44503, 0.45876, 0.676505, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_2qy8a"]
-size = Vector2(5, 4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mhopb"]
-albedo_color = Color(0.517753, 0.519921, 0.554309, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_hkwwu"]
+size = Vector3(3.06934, 0.500061, 0.285156)
 
 [node name="Room" type="Node3D"]
 script = ExtResource("1_css44")
@@ -67,20 +35,34 @@ libraries = {
 "": SubResource("AnimationLibrary_yblhn")
 }
 
-[node name="Occupant" type="MeshInstance3D" parent="."]
+[node name="Room" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
-mesh = SubResource("QuadMesh_klywe")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0144051, 2.11604, -1.14062)
+texture_filter = 0
+texture = ExtResource("2_2wy5y")
 
-[node name="Bed" type="MeshInstance3D" parent="."]
+[node name="Occupant" type="Sprite3D" parent="."]
 unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, -1.86073, 0.36926, -0.411326)
-mesh = SubResource("PlaneMesh_t8jnh")
-skeleton = NodePath("../../Camera3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_fy7mk")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.329863, 1.51474, 0)
+pixel_size = 0.05
+texture_filter = 0
+texture = ExtResource("2_q1js7")
 
-[node name="Wall" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 1.96143, -0.653978)
-mesh = SubResource("PlaneMesh_2qy8a")
-skeleton = NodePath("../../Camera3D")
-surface_material_override/0 = SubResource("StandardMaterial3D_mhopb")
+[node name="CameraTarget" type="Node3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.08564, 4.29379)
+
+[node name="ReturnArea" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0876651, 1.53125)
+script = ExtResource("4_3viyu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ReturnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.103424, 0)
+shape = SubResource("BoxShape3D_hkwwu")
+
+[node name="Sprite3D" type="Sprite3D" parent="ReturnArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0131946, 0.91272, 0)
+pixel_size = 0.03
+texture = ExtResource("5_ms18u")
+
+[connection signal="clicked" from="ReturnArea" to="." method="_on_return_area_clicked"]
