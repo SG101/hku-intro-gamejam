@@ -1,0 +1,33 @@
+[gd_scene load_steps=7 format=3 uid="uid://dee8gfyqhgq56"]
+
+[ext_resource type="PackedScene" uid="uid://dwcsvdeusfabf" path="res://GameObjects/room.tscn" id="1_uxjca"]
+
+[sub_resource type="Gradient" id="Gradient_wgygn"]
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wdf6p"]
+gradient = SubResource("Gradient_wgygn")
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_gl0n4"]
+panorama = SubResource("GradientTexture1D_wdf6p")
+
+[sub_resource type="Sky" id="Sky_ojg4i"]
+sky_material = SubResource("PanoramaSkyMaterial_gl0n4")
+
+[sub_resource type="Environment" id="Environment_q1q5l"]
+sky = SubResource("Sky_ojg4i")
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+
+[node name="World" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.919, 4.439)
+projection = 1
+size = 4.194
+far = 50.0
+
+[node name="Room" parent="." instance=ExtResource("1_uxjca")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q1q5l")
