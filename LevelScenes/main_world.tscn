@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://dee8gfyqhgq56"]
+[gd_scene load_steps=11 format=3 uid="uid://dee8gfyqhgq56"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_561o6"]
 [ext_resource type="PackedScene" uid="uid://dwcsvdeusfabf" path="res://GameObjects/room.tscn" id="1_uxjca"]
+[ext_resource type="Script" path="res://LevelScenes/camera_switch.gd" id="3_ptrw2"]
 
 [sub_resource type="Gradient" id="Gradient_wgygn"]
 colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 1)
@@ -20,16 +21,46 @@ sky = SubResource("Sky_ojg4i")
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 
+[sub_resource type="SphereMesh" id="SphereMesh_llruj"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_40aw4"]
+
 [node name="World" type="Node3D"]
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.919, 4.439)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.919, 7.32139)
 projection = 1
 size = 7.42607
 far = 50.0
 script = ExtResource("1_561o6")
 
 [node name="Room" parent="." instance=ExtResource("1_uxjca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9.95598, 0)
+
+[node name="Node3D" type="Node3D" parent="Room"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80547, 7.31955)
+
+[node name="Room2" parent="." instance=ExtResource("1_uxjca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 16.6135, 0)
+
+[node name="Node3D" type="Node3D" parent="Room2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80547, 7.31955)
+
+[node name="Room3" parent="." instance=ExtResource("1_uxjca")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 24.052, 0)
+
+[node name="Node3D" type="Node3D" parent="Room3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.80547, 7.31955)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_q1q5l")
+
+[node name="ClickableBody" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.46283, 0)
+script = ExtResource("3_ptrw2")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="ClickableBody"]
+mesh = SubResource("SphereMesh_llruj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ClickableBody"]
+shape = SubResource("SphereShape3D_40aw4")

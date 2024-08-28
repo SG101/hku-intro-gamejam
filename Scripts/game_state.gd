@@ -3,6 +3,7 @@ extends Node
 var time_started : float
 const TARGET_TIME : float = 6 * 60
 const HOUR_LENGTH : float = 60
+var camera : PlayerCamera = null
 
 func end_game():
 	pass # TODO
@@ -18,3 +19,7 @@ func get_time() -> float:
 
 func get_progress() -> float:
 	return self.get_ticks_sec() / self.TARGET_TIME
+
+func move_camera(to : Node3D):
+	self.camera.to_node(to)
+	

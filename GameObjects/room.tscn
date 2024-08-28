@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dwcsvdeusfabf"]
+[gd_scene load_steps=11 format=3 uid="uid://dwcsvdeusfabf"]
 
 [ext_resource type="Script" path="res://Scripts/room.gd" id="1_css44"]
 
@@ -33,9 +33,13 @@ tracks/0/keys = {
 "values": [Vector3(0, 1, 0), Vector3(-1.18678, 1.29911, 0), Vector3(-1.18678, 1.29911, 0), Vector3(-1.85254, 1.50173, 0), Vector3(-1.85254, 1.50173, 0)]
 }
 
+[sub_resource type="Animation" id="Animation_xg6ud"]
+resource_name = "lights"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yblhn"]
 _data = {
 "RESET": SubResource("Animation_0k504"),
+"lights": SubResource("Animation_xg6ud"),
 "sleep": SubResource("Animation_tyqlp")
 }
 

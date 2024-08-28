@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjnirsscmvbsl"]
+
+[ext_resource type="Script" path="res://clickable_body.gd" id="1_6tkpf"]
+
+[node name="ClickableBody" type="StaticBody3D"]
+script = ExtResource("1_6tkpf")

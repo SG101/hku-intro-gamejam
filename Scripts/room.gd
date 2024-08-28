@@ -1,11 +1,6 @@
 class_name Room
 extends Node3D
 
-signal light_switched(to : bool)
-signal coffee_started()
-signal coffee_done()
-signal tv_switched(to : bool)
-
 var lights_on : bool = true
 var has_pillow : bool = false
 
@@ -24,6 +19,10 @@ func process_lights(_delta : float):
 
 # SLEEP
 func start_sleep(_delta : float):
+	self.animp.speed_scale = 1.0 + (0.2 * GameState.get_progress())
+	if has_pillow:
+		self.animp.speed_scale -= 0.5
+	
 	self.animp.play("sleep")
 
 func process_sleep(_delta : float):
