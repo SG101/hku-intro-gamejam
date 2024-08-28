@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://dee8gfyqhgq56"]
+[gd_scene load_steps=8 format=3 uid="uid://dee8gfyqhgq56"]
 
+[ext_resource type="Script" path="res://Scripts/player.gd" id="1_561o6"]
 [ext_resource type="PackedScene" uid="uid://dwcsvdeusfabf" path="res://GameObjects/room.tscn" id="1_uxjca"]
 
 [sub_resource type="Gradient" id="Gradient_wgygn"]
@@ -24,8 +25,9 @@ ambient_light_color = Color(1, 1, 1, 1)
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.919, 4.439)
 projection = 1
-size = 4.194
+size = 7.42607
 far = 50.0
+script = ExtResource("1_561o6")
 
 [node name="Room" parent="." instance=ExtResource("1_uxjca")]
 
